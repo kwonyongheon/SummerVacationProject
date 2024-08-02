@@ -15,7 +15,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
-import java.util.StringTokenizer;
 
 @Table(name = "Members")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -34,6 +33,9 @@ public class Member implements UserDetails {
 
     @Column(name = "password")
     private String password;
+
+    @Column(name = "nickName")
+    private String nickName;
 
     @Column(name = "tagLine")
     private String tagLine;
@@ -56,9 +58,10 @@ public class Member implements UserDetails {
     private LocalDateTime updatedAt;
 
     @Builder
-    public Member(String email, String password, String tagLine, String gameName, String birth, boolean admin) {
+    public Member(String email, String password, String nickName, String tagLine, String gameName, String birth, boolean admin) {
         this.email = email;
         this.password = password;
+        this.nickName = nickName;
         this.tagLine = tagLine;
         this.gameName = gameName;
         this.birth = birth;

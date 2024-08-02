@@ -8,6 +8,7 @@ import lombok.Setter;
 public class AddMemberRequest {
     private String email;
     private String password;
+    private String nickName;
     private String tagLine;
     private String gameName;
     private String birth;
