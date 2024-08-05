@@ -3,7 +3,11 @@ package SummerVacationProject.HCI.web.controller;
 import SummerVacationProject.HCI.web.Exception.JoinException;
 import SummerVacationProject.HCI.web.dto.AddMemberRequest;
 import SummerVacationProject.HCI.web.service.MemberService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,5 +28,12 @@ public class MemberApiController {
             redirectAttributes.addAttribute("error", e.getMessage());
         }
         return "redirect:/join";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        new SecurityContextLogoutHandler().logout(request, response,
+                SecurityContextHolder.getContext().getAuthentication());
+        return "redirect:/login";
     }
 }

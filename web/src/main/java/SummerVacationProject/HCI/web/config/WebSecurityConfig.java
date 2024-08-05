@@ -43,6 +43,9 @@ public class WebSecurityConfig {
                         .logoutSuccessUrl("/login")
                         .invalidateHttpSession(true)
                 )
+                .sessionManagement(session -> session
+                        .sessionAuthenticationErrorUrl("/login")
+                )
                 .build();
     }
 
