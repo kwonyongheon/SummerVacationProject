@@ -68,6 +68,13 @@ public class Member implements UserDetails {
         this.admin = admin;
     }
 
+    public void update (String nickName, String gameName, String tagLine, String birth) {
+        this.nickName = nickName;
+        this.gameName = gameName;
+        this.tagLine = tagLine;
+        this.birth = birth;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("member"));
