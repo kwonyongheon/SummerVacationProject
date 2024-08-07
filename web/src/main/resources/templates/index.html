@@ -20,19 +20,26 @@
                         <span class="text-warning brand-text">gaming</span>
                     </a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-secondary" href="#" id="navbarDropdownMenuLink"
-                       role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        갤러리
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">자유</a></li>
-                        <li><a class="dropdown-item" href="#">유머</a></li>
-                        <li><a class="dropdown-item" href="#">질문</a></li>
-                        <li><a class="dropdown-item" href="#">영상</a></li>
-                        <li><a class="dropdown-item" href="#">롤 대회</a></li>
-                    </ul>
-                </li>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a
+                                class="nav-link dropdown-toggle text-secondary"
+                                id="navbarDropdownMenuLink"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            갤러리
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li th:each="boardType : ${galleryBoardTypes}">
+                                <a th:href="@{/gallery/{boardType}(boardType=${boardType.toString()})}"
+                                   class="dropdown-item"
+                                   th:text="${boardType.viewName}">name</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-secondary" href="#" id="navbarDropdownMenuLink2"
                        role="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -1,5 +1,6 @@
 package SummerVacationProject.HCI.web.controller;
 
+import SummerVacationProject.HCI.web.domain.GalleryBoardType;
 import SummerVacationProject.HCI.web.domain.Member;
 import SummerVacationProject.HCI.web.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -40,7 +41,8 @@ public class MemberViewController {
     }
 
     @GetMapping("/index")
-    public String Main() {
+    public String main(Model model) {
+        model.addAttribute("galleryBoardTypes", GalleryBoardType.values()); //갤러리 항목에 GalleryBoardType enum 데이터 값
         return "index";
     }
 
