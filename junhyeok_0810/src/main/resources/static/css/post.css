@@ -1,0 +1,38 @@
+.comment, .reply {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.comment-header, .reply-header {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.comment-body, .reply-body {
+    margin-bottom: 10px;
+}
+
+.comment-footer, .reply-footer {
+    display: flex;
+    gap: 5px;
+}
+
+.comment-date, .reply-date {
+    color: #888;
+    margin-left: 10px;
+    font-size: 0.9em;
+}
+
+.replies {
+    margin-left: 30px;
+}
+
+.reply-form {
+    margin-top: 10px;
+}
+
+.d-none {
+    display: none;
+}
