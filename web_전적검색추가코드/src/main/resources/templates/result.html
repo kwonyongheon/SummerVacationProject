@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>검색 결과</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .player-info {
+            display: flex;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .player-info img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .card.win {
+            background-color: #d1e7dd; /* light green for win */
+            border-color: #badbcc;
+        }
+
+        .card.lose {
+            background-color: #f8d7da; /* light red for lose */
+            border-color: #f5c2c7;
+        }
+
+        .card-header {
+            cursor: pointer;
+            font-weight: bold;
+            padding: 15px;
+            background-color: #343a40;
+            color: white;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-header:hover {
+            background-color: #495057;
+        }
+
+        .card-body {
+            display: none;
+            padding: 15px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .card-body ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .card-body ul li {
+            padding: 5px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .card-body ul li:last-child {
+            border-bottom: none;
+        }
+
+        .kda {
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .summoner-info {
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+
+        h2, h3, h4, h5, h6 {
+            color: #343a40;
+        }
+
+        .btn-secondary {
+            background-color: #343a40;
+            border-color: #343a40;
+        }
+
+        .btn-secondary:hover {
+            background-color: #495057;
+            border-color: #495057;
+        }
+
+        .team-divider {
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .match-overview {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .match-overview img {
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+
+        .details-link {
+            cursor: pointer;
+            color: #007bff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="player-info">
+        <img th:src="${profileIconUrl}" alt="플레이어 아이콘">
+        <div>
+            <h3 th:text="${fullSummonerName}"></h3>
+            <p>레벨: <span th:text="${level}"></span></p>
+            <p>솔로 랭크: <span th:text="${soloRank}"></span></p>
+            <p>자유 랭크: <span th:text="${flexRank}"></span></p>
+        </div>
+    </div>
+
+    <div th:if="${error}">
+        <p th:text="${error}" class="text-danger"></p>
+    </div>
+
+    <div th:unless="${error}">
+        <h5>최근 게임 전적:</h5>
+        <div th:each="match : ${matches}"
+             th:classappend="${match.win} ? 'card win mb-3' : 'card lose mb-3'">
+            <div class="card-header match-overview">
+                <div>
+                    <img th:src="${match.championIconUrl}" alt="Champion Icon" width="40" height="40">
+                    <span th:text="${match.daysAgo}"></span> -
+                    <span th:text="'결과: ' + (${match.win} ? '승리' : '패배')"></span>
+                    <span th:text="' | 시간: ' + ${match.duration}"></span>
+                    <span th:text="' | 챔피언: ' + ${match.championName}"></span>
+                </div>
+                <div>
+                    <span th:text="'KDA: ' + ${match.kills} + '/' + ${match.deaths} + '/' + ${match.assists}"></span>
+                    <span class="details-link">더보기</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="team-divider">아군</div>
+                <ul>
+                    <li th:each="participant : ${match.allies}">
+                        <img th:src="${participant.championIconUrl}" alt="Champion Icon" width="20" height="20">
+                        <span class="summoner-info" th:text="${participant.summonerName}"></span> -
+                        <span th:text="'챔피언: ' + ${participant.championName}"></span>,
+                        <span class="kda" th:text="'KDA: ' + ${participant.kills} + '/' + ${participant.deaths} + '/' + ${participant.assists}"></span>,
+                        <span class="summoner-info" th:text="'레벨: ' + ${participant.champLevel}"></span>
+                    </li>
+                </ul>
+                <div class="team-divider">적군</div>
+                <ul>
+                    <li th:each="participant : ${match.enemies}">
+                        <img th:src="${participant.championIconUrl}" alt="Champion Icon" width="20" height="20">
+                        <span class="summoner-info" th:text="${participant.summonerName}"></span> -
+                        <span th:text="'챔피언: ' + ${participant.championName}"></span>,
+                        <span class="kda" th:text="'KDA: ' + ${participant.kills} + '/' + ${participant.deaths} + '/' + ${participant.assists}"></span>,
+                        <span class="summoner-info" th:text="'레벨: ' + ${participant.champLevel}"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <a href="/" class="btn btn-secondary mt-3">다시 검색하기</a>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const detailsLinks = document.querySelectorAll(".details-link");
+        detailsLinks.forEach(link => {
+            link.addEventListener("click", function() {
+                const body = link.closest('.card').querySelector('.card-body');
+                body.style.display = body.style.display === "none" ? "block" : "none";
+            });
+        });
+    });
+</script>
+</body>
+</html>
