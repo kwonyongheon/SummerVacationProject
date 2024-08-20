@@ -1,0 +1,28 @@
+.brand-text { <!-- ysh -->
+    font-size: 2rem;
+}
+.form-container {
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.table thead th {
+    background-color: #343a40;
+    color: #fff;
+}
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.text-black {
+    color: #000;
+}
+
+.orange-text {
+    color: #FFA500; /* 주황색 */
+}
+
+.nav-link:hover {
+    color: #FF0000; /* 마우스를 갖다댔을 때 텍스트 색상 빨간색 */
+}

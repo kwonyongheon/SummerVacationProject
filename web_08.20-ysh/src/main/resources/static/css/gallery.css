@@ -1,0 +1,81 @@
+
+
+/* 메인 */
+.card {
+    width: 100%; /* 기본적으로 부모 요소의 전체 너비를 차지하게 함 */
+    max-width: 100%; /* 최대 너비를 100%로 설정 */
+    border-color: #2E2E2E;
+}
+/* 사이드바 */
+.custom-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #2E2E2E;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    text-align: left;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+.custom-btn i {
+    margin-right: 10px;
+    font-size: 12px;
+    color: white;
+}
+
+.custom-btn:hover {
+    background-color: #40454b;
+}
+
+.custom-btn:active, .custom-btn:focus {
+    background-color: #1f2225;
+    outline: none;
+    box-shadow: none;
+}
+
+.fixed-sidebar {
+    width: 200px;
+    padding: 20px;
+    position: relative;
+    float: left; /* 왼쪽에 배치 */
+    left: 0; /* 왼쪽에 위치 */
+    justify-content: left;
+    align-items: center;
+}
+
+
+/* 검색 버튼 */
+.btn.search {
+    color: white; /* 텍스트 색상 */
+    border: 1px solid white; /* 테두리 색상 */
+    background-color: black; /* 배경색 */
+    transition: background-color 0.3s, color 0.3s; /* 배경색과 텍스트 색상 전환에 애니메이션 적용 */
+}
+
+.btn.search:hover {
+    background-color: white; /* 배경색을 흰색으로 변경 */
+    color: black; /* 텍스트 색상 변경 */
+    border: 1px solid black; /* 테두리 색상 변경 */
+}
+
+/* 게시판 헤더 */
+.board-header{
+    display: flex; /* Flexbox 레이아웃 활성화 */
+    justify-content: space-between; /* 자식 요소들을 좌우로 분산 정렬 */
+    align-items: center; /* 자식 요소들을 수직으로 중앙 정렬 */
+    background-color: #2E2E2E; /* Bootstrap의 bg-primary와 동일한 색상 */
+    color: white; /* 텍스트 색상 */
+}
+
+.post-create-text{
+    color: white;
+}
+
+.post-create-text:hover {
+    color: orange;
+}
