@@ -1,0 +1,196 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2 {
+    color: #343a40;
+}
+
+.table {
+    background-color: #ffffff;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table th {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+.btn {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    padding: 5px 10px;
+    font-size: 14px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    color: white;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    color: white;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    color: white;
+}
+
+.btn-outline-primary {
+    color: #007bff;
+    background-color: transparent;
+    border-color: #007bff;
+}
+
+.btn-outline-primary:hover {
+    color: white;
+    background-color: #007bff;
+}
+
+.btn-outline-secondary {
+    color: #6c757d;
+    background-color: transparent;
+    border-color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+    color: white;
+    background-color: #6c757d;
+}
+
+.btn-home {
+    background-color: transparent; /* 배경을 투명하게 설정 */
+    color: white; /* 텍스트 색상을 설정 */
+    border: 1px solid white; /* 테두리를 흰색으로 설정 */
+    border-radius: 5px; /* 버튼의 모서리를 둥글게 설정 */
+    height: 38px;
+    line-height: 38px;
+    padding: 0 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-home:hover {
+    background-color: white; /* 호버 시 배경을 흰색으로 설정 */
+    color: #343a40; /* 호버 시 텍스트 색상을 회색으로 설정 */
+    border: 1px solid #343a40; /* 호버 시 테두리 색상을 회색으로 설정 */
+}
+
+.btn-placeholder {
+    width: 100px; /* 홈 버튼과 동일한 너비로 조정 */
+}
+
+.modal-header, .modal-footer {
+    border: none;
+}
+
+.modal-title {
+    color: #343a40;
+}
+
+/* 상단 네비게이션 바 스타일 */
+.brand-text {
+    font-weight: bold;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.flex-grow-1 {
+    flex: 1;
+}
+
+/* 필터 버튼 스타일 */
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.filter-button {
+    border: none;
+    background-color: #ffffff;
+    color: #343a40;
+    padding: 5px 15px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.filter-button:hover, .filter-button.active {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+/* 검색 바 스타일 */
+.search-bar {
+    display: flex;
+    align-items: center;
+    max-width: 300px;
+    border-radius: 30px;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 5px 10px;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.search-bar button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    color: #343a40;
+    font-size: 1.2rem;
+}

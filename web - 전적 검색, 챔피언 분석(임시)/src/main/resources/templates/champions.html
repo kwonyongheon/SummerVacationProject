@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>챔피언 목록</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>챔피언 목록</h1>
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>챔피언</th>
+                    <th>이름</th>
+                    <th>역할</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="champion : ${champions}">
+                    <td>
+                        <img th:src="${champion.imageUrl}" alt="챔피언 초상화" width="50" height="50">
+                    </td>
+                    <td>
+                        <a th:href="@{/champions/{id}(id=${champion.id})}" th:text="${champion.name}"></a>
+                    </td>
+                    <td th:text="${champion.title}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

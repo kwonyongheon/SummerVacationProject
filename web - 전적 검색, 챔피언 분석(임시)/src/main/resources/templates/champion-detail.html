@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>챔피언 상세 정보</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .skin-image {
+            width: 100%;
+            max-width: 500px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-3">
+            <img th:src="${champion.imageUrl}" alt="챔피언 초상화" class="img-fluid">
+        </div>
+        <div class="col-9">
+            <h2 th:text="${champion.name} + ' (' + ${champion.title} + ')'"></h2>
+            <p th:text="${champion.lore}"></p>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <h3>스킨 목록</h3>
+            <div th:each="skin : ${champion.skins}">
+                <div>
+                    <h5 th:text="${skin.split('|')[0]}"></h5>
+                    <img th:src="${skin.split('|')[1]}" alt="스킨 이미지" class="skin-image">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
