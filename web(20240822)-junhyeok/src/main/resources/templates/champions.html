@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>챔피언 목록</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            flex: 1; /* 컨텐츠가 부족해도 footer를 아래에 고정할 수 있도록 함 */
+        }
+
+        .header {
+            background-color: #282c34;
+            color: #ffffff;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        footer {
+            padding-top: 20px;
+            background-color: #343a40;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .header a {
+            color: #61dafb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .header a:hover {
+            text-decoration: underline;
+        }
+
+        .champion-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: start;
+        }
+
+        .champion-item {
+            width: 10%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .champion-item img {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .champion-name {
+            margin-top: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>챔피언 목록</h1>
+    <a href="/" class="btn btn-secondary">홈으로 돌아가기</a>
+</div>
+
+<div class="container mt-5">
+    <div class="champion-grid">
+        <div class="champion-item" th:each="champion : ${champions}">
+            <img th:src="${champion.imageUrl}" alt="챔피언 초상화" width="50" height="50">
+            <div class="champion-name">
+                <a th:href="@{/champions/{id}(id=${champion.id})}" th:text="${champion.name}"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="text-center bg-dark">
+    <p>Copyright © 2024 HCI. gaming. All rights reserved.</p>
+</footer>
+</body>
+</html>

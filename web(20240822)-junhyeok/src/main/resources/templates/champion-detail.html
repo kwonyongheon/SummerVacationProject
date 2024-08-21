@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>챔피언 상세 정보</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            flex: 1; /* 컨텐츠가 부족해도 footer를 아래에 고정할 수 있도록 함 */
+            max-width: 1200px;
+            margin: auto;
+            padding-bottom: 20px; /* 푸터와의 여백 추가 */
+        }
+
+        .header, footer {
+            background-color: #282c34;
+            color: #ffffff;
+            padding: 10px 0; /* 패딩 조정 */
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .header a {
+            color: #61dafb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .header a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            display: flex;
+            align-items: center; /* 수직 중앙 정렬 */
+            justify-content: center; /* 수평 중앙 정렬 */
+            height: 60px; /* 푸터 높이 설정 */
+            background-color: #343a40;
+            color: white;
+            margin-top: 30px; /* 푸터와 컨텐츠 사이의 여백 */
+            padding: 0 15px; /* 좌우 패딩 추가 */
+        }
+
+        footer p {
+            margin: 0;
+            line-height: 60px; /* 푸터의 높이에 맞게 줄 높이 설정 */
+        }
+
+        .champion-card {
+            display: flex;
+            align-items: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .champion-card img {
+            border-radius: 8px;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-right: 20px;
+            margin-top: auto; /* 상단 여백 제거 */
+            margin-bottom: auto; /* 하단 여백 추가 */
+        }
+
+        .champion-card .card-body {
+            flex: 1;
+        }
+
+        .champion-card h1 {
+            font-size: 1.75rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .champion-card h2 {
+            font-size: 1.15rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .champion-card p {
+            font-size: 0.9rem;
+            color: #444;
+            line-height: 1.5;
+        }
+
+        .stats-table {
+            margin-top: 30px;
+        }
+
+        .stats-table table {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .stats-table th, .stats-table td {
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+
+        .stats-table th {
+            background-color: #f7f7f7;
+            font-weight: bold;
+        }
+
+        .skills-container {
+            margin-top: 30px;
+        }
+
+        .skills-container h3 {
+            font-size: 1.75rem;
+            color: #333;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .skill-item img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .skill-item div {
+            flex: 1;
+            max-width: 100%;
+            padding-right: 20px;
+        }
+
+        .skill-item h4 {
+            margin: 0;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .skill-item p {
+            font-size: 0.85rem;
+            color: #666;
+            margin: 5px 0 0;
+            text-align: left;
+            word-wrap: break-word;
+        }
+
+        .skins-container {
+            margin-top: 30px;
+        }
+
+        .skins-container h3 {
+            font-size: 1.75rem;
+            color: #333;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .card-columns {
+            column-count: 3;
+        }
+
+        .card {
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img {
+            border-radius: 8px;
+        }
+
+        .card-body {
+            padding: 10px;
+        }
+
+        .card-body p {
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .champion-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: start;
+        }
+
+        .champion-item {
+            width: 10%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .champion-item img {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .champion-name {
+            margin-top: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>챔피언 상세 정보</h1>
+    <a href="/champions" class="btn btn-secondary">챔피언 목록으로 돌아가기</a>
+</div>
+
+<div class="container">
+    <!-- 챔피언 정보 -->
+    <div class="champion-card">
+        <img th:src="${champion.imageUrl}" alt="챔피언 초상화">
+        <div class="card-body">
+            <h1 th:text="${champion.name}">챔피언 이름</h1>
+            <h2 th:text="${champion.title}">챔피언 제목</h2>
+            <p th:text="${champion.lore}">챔피언 전설</p>
+        </div>
+    </div>
+
+    <!-- 능력치 -->
+    <div class="stats-table">
+        <h3>능력치</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>체력 (HP)</th>
+                <th>체력 증가 (HP/레벨)</th>
+                <th>마나 (MP)</th>
+                <th>마나 증가 (MP/레벨)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${champion.stats.hp}">값</td>
+                <td th:text="${champion.stats.hpperlevel}">값</td>
+                <td th:text="${champion.stats.mp}">값</td>
+                <td th:text="${champion.stats.mpperlevel}">값</td>
+            </tr>
+            <tr>
+                <th>이동 속도</th>
+                <th>방어력</th>
+                <th>방어력 증가 (레벨)</th>
+                <th>마법 저항력</th>
+            </tr>
+            <tr>
+                <td th:text="${champion.stats.movespeed}">값</td>
+                <td th:text="${champion.stats.armor}">값</td>
+                <td th:text="${champion.stats.armorperlevel}">값</td>
+                <td th:text="${champion.stats.spellblock}">값</td>
+            </tr>
+            <tr>
+                <th>마법 저항력 증가 (레벨)</th>
+                <th>공격 범위</th>
+                <th>체력 회복 (HP/5초)</th>
+                <th>체력 회복 증가 (레벨)</th>
+            </tr>
+            <tr>
+                <td th:text="${champion.stats.spellblockperlevel}">값</td>
+                <td th:text="${champion.stats.attackrange}">값</td>
+                <td th:text="${champion.stats.hpregen}">값</td>
+                <td th:text="${champion.stats.hpregenperlevel}">값</td>
+            </tr>
+            <tr>
+                <th>마나 회복 (MP/5초)</th>
+                <th>마나 회복 증가 (레벨)</th>
+                <th>치명타 확률</th>
+                <th>치명타 확률 증가 (레벨)</th>
+            </tr>
+            <tr>
+                <td th:text="${champion.stats.mpregen}">값</td>
+                <td th:text="${champion.stats.mpregenperlevel}">값</td>
+                <td th:text="${champion.stats.crit}">값</td>
+                <td th:text="${champion.stats.critperlevel}">값</td>
+            </tr>
+            <tr>
+                <th>기본 공격력</th>
+                <th>기본 공격력 증가 (레벨)</th>
+                <th>공격 속도</th>
+                <th>공격 속도 증가 (레벨)</th>
+            </tr>
+            <tr>
+                <td th:text="${champion.stats.attackdamage}">값</td>
+                <td th:text="${champion.stats.attackdamageperlevel}">값</td>
+                <td th:text="${champion.stats.attackspeed}">값</td>
+                <td th:text="${champion.stats.attackspeedperlevel}">값</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 스킬 -->
+    <div class="skills-container">
+        <h3>스킬</h3>
+        <div th:each="skill : ${champion.skills}" class="skill-item">
+            <img th:src="${skill.imageUrl}" alt="스킬 아이콘">
+            <div>
+                <h4 th:text="${skill.name}">스킬 이름</h4>
+                <p th:text="${skill.description}">스킬 설명</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 스킨 -->
+    <div class="skins-container">
+        <h3>스킨</h3>
+        <div class="card-columns">
+            <div th:each="skin, iterStat : ${champion.skins}" class="card">
+                <img th:src="${skin}" class="card-img-top" alt="스킨 이미지">
+                <div class="card-body">
+                    <p class="card-text" th:text="${champion.skinNames[iterStat.index]}">스킨 이름</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="text-center bg-dark">
+    <p>Copyright © 2024 HCI. gaming. All rights reserved.</p>
+</footer>
+
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

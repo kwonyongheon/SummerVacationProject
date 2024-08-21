@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HCI.gaming</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<!-- body start -->
+<body>
+<!-- header start -->
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li>
+                    <a th:href="@{/index}" class="nav-link px-2 text-white">
+                        <span class="text-danger brand-text">HCI.</span>
+                        <span class="text-warning brand-text">gaming</span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-secondary" href="#" id="navbarDropdownMenuLink"
+                       role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        갤러리
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">자유</a></li>
+                        <li><a class="dropdown-item" href="#">유머</a></li>
+                        <li><a class="dropdown-item" href="#">질문</a></li>
+                        <li><a class="dropdown-item" href="#">영상</a></li>
+                        <li><a class="dropdown-item" href="#">롤 대회</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-secondary" href="#" id="navbarDropdownMenuLink2"
+                       role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        회원갤러리
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                        <li><a class="dropdown-item" th:href="@{/member-galleries}">게시판을 개설해보세요!</a></li>
+                        <li th:each="gallery : ${galleries}">
+                            <a class="dropdown-item" th:href="@{/galleries/{id}(id=${gallery.id})}" th:text="${gallery.title}"></a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a th:href="@{/champions}" class="nav-link px-2 text-secondary">챔피언분석</a></li>
+                <li><a href="#" class="nav-link px-2 text-secondary">문의하기</a></li>
+                <li><a href="#" class="nav-link px-2 text-secondary">마이페이지</a></li>
+            </ul>
+            <div class="text-end">
+                <!-- 로그인 상태에 따른 버튼 표시 -->
+                <div th:if="${#authorization.expression('isAuthenticated()')}">
+                    <a th:href="@{/member-info/{id}(id=${#authentication.getPrincipal().id})}" class="text-white text-decoration-none me-3 hover-text-pink"><span
+                            sec:authentication="name"></span> 님 =&gt;</a>
+                    <a th:href="@{/logout}" class="btn btn-outline-light me-2">로그아웃</a>
+                </div>
+                <div th:unless="${#authorization.expression('isAuthenticated()')}">
+                    <a th:href="@{/login}" class="btn btn-outline-light me-2">로그인</a>
+                    <a th:href="@{/join}" class="btn btn-outline-light me-2">회원가입</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- header end -->
+
+<!-- content start-->
+<div class="container mt-5">
+    <form class="custom-form" id="searchForm" action="/search" method="get">
+        <label for="region" class="form-label me-2">지역</label>
+        <select id="region" class="form-select">
+            <option selected>Korea</option>
+            <option value="1" disabled>서비스 준비중입니다....</option>
+        </select>
+        <label for="search" class="form-label me-2 ms-3">검색</label>
+        <input id="search" type="text" class="form-control" placeholder="플레이어 이름 + #태그명">
+
+        <!-- 숨겨진 필드 (gameName, tagLine) -->
+        <input type="hidden" name="gameName" id="gameName">
+        <input type="hidden" name="tagLine" id="tagLine">
+
+        <button type="submit" class="brand-logo btn mt-3">.딸깍</button>
+    </form>
+    <!-- 갤러리 -->
+    <div class="gallery">
+        <h1>갤러리</h1>
+        <hr>
+        <div class="post-container">
+            <div class="post-section">
+                <h2>자유 게시판</h2>
+                <ul class="post-list">
+                    <li class="post-item"><a href="#">오로라 미드 오로라 공략 [1]</a><span class="time">1</span></li>
+                </ul>
+            </div>
+            <div class="post-section">
+                <h2>유머 게시판</h2>
+                <ul class="post-list">
+                    <li class="post-item"><a href="#">애 만나면 겜 졌다고 생각하심 [3]</a><span class="time">1</span></li>
+                    <li class="post-item"><a href="#">라이엇의 제재를 그냥 자동매크로로만 한다는 증거/ps에나... [0]</a><span
+                            class="time">1일 전</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="post-container">
+            <div class="post-section">
+                <h2>질문 게시판</h2>
+                <ul class="post-list">
+                    <li class="post-item"><a href="#">오로라 미드 오로라 공략 [1]</a><span class="time">1</span></li>
+                </ul>
+            </div>
+            <div class="post-section">
+                <h2>영상 게시판</h2>
+                <ul class="post-list">
+                    <li class="post-item"><a href="#">애 만나면 겜 졌다고 생각하심 [3]</a><span class="time">1</span></li>
+                    <li class="post-item"><a href="#">슬랭에 사주 뽑기 게임이 된 이유(사주론은 옮았을까?) [0]</a><span class="time">2</span>
+                    </li>
+                    <li class="post-item"><a href="#">롤 모의고사 결산입니다. [1]</a><span class="time">1</span></li>
+                    <li class="post-item"><a href="#">라이엇의 제재를 그냥 자동매크로로만 한다는 증거/ps에나... [0]</a><span
+                            class="time">1일 전</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="post-container">
+            <div class="post-section">
+                <h2>롤 대회</h2>
+                <ul class="post-list">
+                    <li class="post-item"><a href="#">오로라 미드 오로라 공략 [1]</a><span class="time">1</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 갤러리 끝 -->
+
+    <!-- 회원갤러리 -->
+    <div class="gallery">
+        <h1>회원갤러리</h1>
+        <hr>
+        <div class="post-container">
+            <div class="post-section">
+                <h2>회원게시판1</h2>
+                <ul class="post-list">
+                    <li class="post-item"><a href="#"></a></li>
+                </ul>
+            </div>
+            <div class="post-section">
+                <h2>회원게시판2</h2>
+                <ul class="post-list">
+                    <li class="post-item"><a href="#"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 회원갤러리 끝 -->
+</div>
+<!-- content end-->
+
+<!-- Footer -->
+<footer class="text-center bg-dark">
+    <p>Copyright © 2024 HCI. gaming. All rights reserved.</p>
+</footer>
+<!-- Footer end -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/index.js"></script>
+<script>
+    function openGalleryModal() {
+        var galleryModal = new bootstrap.Modal(document.getElementById('galleryModal'), {});
+        galleryModal.show();
+    }
+</script>
+</body>
+<!-- body end -->
+
+</html>
