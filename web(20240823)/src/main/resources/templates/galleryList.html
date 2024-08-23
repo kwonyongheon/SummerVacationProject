@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>galleryList</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/minorGallery.css">
+</head>
+<!-- body start -->
+
+<body>
+<!-- Header start -->
+<header class="bg-dark">
+    <div class="container header">
+        <h1>
+            <a th:href="@{/index}" class="nav-link px-2">
+                <span class="text-danger brand-text">HCI.</span>
+                <span class="text-warning brand-text">gaming</span>
+            </a>
+        </h1>
+    </div>
+</header>
+<!-- Header end -->
+
+<!-- Sub-Menu -->
+<div class="sub-menu d-flex justify-content-center">
+    <div class="dropdown">
+        <a class="dropdown-toggle" href="#" role="button" id="galleryDropdown" data-bs-toggle="dropdown"
+           aria-expanded="false">
+            갤러리
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" th:each="gallry : ${Galleries}" th:text="${gallry.name}" th:href="@{/Gallery/{id}(id = ${gallry.id})}"></a></li>
+        </ul>
+    </div>
+    <span>|</span>
+    <div class="dropdown">
+        <a class="dropdown-toggle" th:href="@{/MinorGallery/list}" role="button" id="memberGalleryDropdown"
+           data-bs-toggle="dropdown" aria-expanded="false">
+            회원갤러리
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="memberGalleryDropdown">
+            <li><a class="dropdown-item" th:href="@{/m-create}">게시판을 개설해보세요!</a></li>
+        </ul>
+    </div>
+    <span>|</span>
+    <a th:href="@{/champions}">챔피언분석</a> |
+    <a href="#">문의하기</a> |
+    <a th:href="@{/myPage}">마이페이지</a>
+</div>
+<!-- Sub-Menu end -->
+
+<!-- Navigation Tabs -->
+<div class="container mt-3">
+    <!-- Tabs start -->
+    <ul class="nav nav-tabs justify-content-between align-items-center" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <h2>갤러리</h2>
+        </li>
+    </ul>
+    <!-- Tabs end -->
+    <div>
+        <!-- 갤러리 리스트 start -->
+        <div th:unless="${#lists.isEmpty(Galleries)}">
+            <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+                <!-- 카드 1 -->
+                <div class="col" th:each="gallery : ${Galleries}">
+                    <div class="card gallery-card h-100">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h4 th:text="${gallery.name}"></h4>
+                                <span class="creation-date" th:text="${#temporals.format(gallery.createdAt, 'yyyy-MM-dd')}"></span>
+                            </div>
+                            <div class="gallery-owner" th:text="'관리자: ' + ${gallery.creator?.nickName ?: '알수 없음'}"></div>
+                            <p class="card-text" th:text="${gallery.description}"></p>
+                            <a th:href="@{/Gallery/{id}(id=${gallery.id})}" class="btn btn-primary">갤러리로 이동</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 회원 갤러리 리스트 end -->
+    </div>
+</div>
+<!-- Navigation Tabs end -->
+
+<!-- Footer -->
+<footer class="text-center text-white mt-5 mb-3">
+    <p>Copyright © 2024 HCI. gaming. All rights reserved.</p>
+</footer>
+<!-- Footer end -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/MgalleryList.js"></script>
+</body>
+
+</html>

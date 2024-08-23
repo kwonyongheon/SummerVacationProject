@@ -1,0 +1,237 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1; /* 컨텐츠가 부족해도 footer를 아래에 고정할 수 있도록 함 */
+}
+
+.header {
+    background-color: #282c34;
+    color: #ffffff;
+    padding: 15px 0;
+    text-align: center;
+}
+
+footer {
+    padding-top: 20px;
+    background-color: #343a40;
+    color: white;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    font-weight: 700;
+}
+
+.header a {
+    color: #61dafb;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.header a:hover {
+    text-decoration: underline;
+}
+
+.player-info {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.player-info img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.player-info h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.player-info p {
+    margin: 5px 0;
+}
+
+.card {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card.win {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.card.lose {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.card-header {
+    cursor: pointer;
+    font-weight: 600;
+    padding: 15px;
+    background-color: #343a40;
+    color: #ffffff;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-header:hover {
+    background-color: #495057;
+}
+
+.card-body {
+    display: none;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 0 0 10px 10px;
+}
+
+.card-body ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.card-body ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-body ul li:last-child {
+    border-bottom: none;
+}
+
+.champion-icon,
+.spell-icon,
+.item-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.spells-items-container {
+    display: flex;
+    align-items: center;
+    gap: 80px; /* 스펠과 아이템 사이의 간격 */
+}
+
+.spells-container,
+.items-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* 스펠 간의 간격 및 아이템 간의 간격 */
+}
+
+.champion-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.champion-name,
+.kda,
+.level {
+    flex: 1;
+}
+
+.kda {
+    font-weight: 600;
+    color: #495057;
+}
+
+.summoner-info {
+    font-size: 0.9em;
+    color: #6c757d;
+    cursor: pointer;
+}
+
+h2, h3, h4, h5, h6 {
+    color: #343a40;
+}
+
+.btn-secondary {
+    background-color: #343a40;
+    border-color: #343a40;
+}
+
+.btn-secondary:hover {
+    background-color: #495057;
+    border-color: #495057;
+}
+
+.team-divider {
+    font-weight: 600;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.match-overview {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.match-overview img {
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.details-link {
+    cursor: pointer;
+    color: #007bff;
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .player-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .player-info img {
+        margin-bottom: 15px;
+    }
+
+    .spells-items-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .spells-container,
+    .items-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+.load-more-container {
+    text-align: center;
+    margin: 30px 0;
+}
