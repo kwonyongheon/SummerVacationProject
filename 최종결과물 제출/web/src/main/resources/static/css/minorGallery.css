@@ -1,0 +1,108 @@
+body {
+    background-color: #2E2E2E;
+}
+
+.header {
+    padding: 1rem;
+    color: white;
+    text-align: left;
+}
+
+h2 {
+    color: white;
+    background-color: #033b27;
+}
+
+.form-container {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 2rem;
+    margin-top: 2rem;
+    border-radius: 5px;
+}
+
+.sub-menu {
+    background-color: #03103b;
+    color: white;
+    padding: 0.5rem 0;
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+.sub-menu a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+}
+
+.sub-menu a:hover {
+    text-decoration: underline;
+}
+
+.sub-menu .dropdown-menu {
+    background-color: #03323b;
+}
+
+.sub-menu .dropdown-menu a {
+    color: white;
+}
+
+.sub-menu .dropdown-menu a:hover {
+    background-color: #162c72;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* 드롭다운이 마우스 호버 시 자연스럽게 열리도록 상단 마진 제거 */
+}
+
+.gallery-card {
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.gallery-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.creation-date {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.gallery-owner {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.card-text {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.create-gallery-btn {
+    background-color: #ffa000;
+    color: #fff; /* 흰색 텍스트 */
+    font-weight: bold; /* 텍스트 굵게 */
+    border-radius: 30px; /* 둥근 모서리 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* 부드러운 전환 효과 */
+}
+
+.create-gallery-btn:hover {
+    background-color: #fff;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* 더 진한 그림자 */
+}
+

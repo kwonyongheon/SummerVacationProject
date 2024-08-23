@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>챔피언 상세 정보</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/champion-detail.css">
+</head>
+<body>
+<div class="header">
+    <h1>챔피언 상세 정보</h1>
+    <a href="/champions" class="btn btn-secondary">챔피언 목록으로 돌아가기</a>
+</div>
+
+<div class="container">
+    <!-- 챔피언 정보 -->
+    <div class="champion-card">
+        <img th:src="${champion.imageUrl}" alt="챔피언 초상화">
+        <div class="card-body">
+            <h1 th:text="${champion.name}">챔피언 이름</h1>
+            <h2 th:text="${champion.title}">챔피언 제목</h2>
+            <p th:text="${champion.lore}">챔피언 전설</p>
+        </div>
+    </div>
+
+    <!-- 능력치 -->
+    <div class="stats-table">
+        <h3>능력치</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>체력 (HP)</th>
+                <th>체력 증가 (HP/레벨)</th>
+                <th>마나 (MP)</th>
+                <th>마나 증가 (MP/레벨)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${champion.stats.hp}">값</td>
+                <td th:text="${champion.stats.hpperlevel}">값</td>
+                <td th:text="${champion.stats.mp}">값</td>
+                <td th:text="${champion.stats.mpperlevel}">값</td>
+            </tr>
+            <tr>
+                <th>이동 속도</th>
+                <th>방어력</th>
+                <th>방어력 증가 (레벨)</th>
+                <th>마법 저항력</th>
+            </tr>
+            <tr>
+                <td th:text="${champion.stats.movespeed}">값</td>
+                <td th:text="${champion.stats.armor}">값</td>
+                <td th:text="${champion.stats.armorperlevel}">값</td>
+                <td th:text="${champion.stats.spellblock}">값</td>
+            </tr>
+            <tr>
+                <th>마법 저항력 증가 (레벨)</th>
+                <th>공격 범위</th>
+                <th>체력 회복 (HP/5초)</th>
+                <th>체력 회복 증가 (레벨)</th>
+            </tr>
+            <tr>
+                <td th:text="${champion.stats.spellblockperlevel}">값</td>
+                <td th:text="${champion.stats.attackrange}">값</td>
+                <td th:text="${champion.stats.hpregen}">값</td>
+                <td th:text="${champion.stats.hpregenperlevel}">값</td>
+            </tr>
+            <tr>
+                <th>마나 회복 (MP/5초)</th>
+                <th>마나 회복 증가 (레벨)</th>
+                <th>치명타 확률</th>
+                <th>치명타 확률 증가 (레벨)</th>
+            </tr>
+            <tr>
+                <td th:text="${champion.stats.mpregen}">값</td>
+                <td th:text="${champion.stats.mpregenperlevel}">값</td>
+                <td th:text="${champion.stats.crit}">값</td>
+                <td th:text="${champion.stats.critperlevel}">값</td>
+            </tr>
+            <tr>
+                <th>기본 공격력</th>
+                <th>기본 공격력 증가 (레벨)</th>
+                <th>공격 속도</th>
+                <th>공격 속도 증가 (레벨)</th>
+            </tr>
+            <tr>
+                <td th:text="${champion.stats.attackdamage}">값</td>
+                <td th:text="${champion.stats.attackdamageperlevel}">값</td>
+                <td th:text="${champion.stats.attackspeed}">값</td>
+                <td th:text="${champion.stats.attackspeedperlevel}">값</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 스킬 -->
+    <div class="skills-container">
+        <h3>스킬</h3>
+        <div th:each="skill : ${champion.skills}" class="skill-item">
+            <img th:src="${skill.imageUrl}" alt="스킬 아이콘">
+            <div>
+                <h4 th:text="${skill.name}">스킬 이름</h4>
+                <p th:text="${skill.description}">스킬 설명</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 스킨 -->
+    <div class="skins-container">
+        <h3>스킨</h3>
+        <div class="card-columns">
+            <div th:each="skin, iterStat : ${champion.skins}" class="card">
+                <img th:src="${skin}" class="card-img-top" alt="스킨 이미지">
+                <div class="card-body">
+                    <p class="card-text" th:text="${champion.skinNames[iterStat.index]}">스킨 이름</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="text-center bg-dark">
+    <p>Copyright © 2024 HCI. gaming. All rights reserved.</p>
+</footer>
+
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

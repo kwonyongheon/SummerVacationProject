@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>챔피언 목록</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/champions.css">
+</head>
+<body>
+<div class="header">
+    <h1>챔피언 목록</h1>
+    <a href="/" class="btn btn-secondary">홈으로 돌아가기</a>
+</div>
+
+<div class="container mt-5">
+    <div class="champion-grid">
+        <div class="champion-item" th:each="champion : ${champions}">
+            <img th:src="${champion.imageUrl}" alt="챔피언 초상화" width="50" height="50">
+            <div class="champion-name">
+                <a th:href="@{/champions/{id}(id=${champion.id})}" th:text="${champion.name}"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="text-center bg-dark">
+    <p>Copyright © 2024 HCI. gaming. All rights reserved.</p>
+</footer>
+</body>
+</html>
