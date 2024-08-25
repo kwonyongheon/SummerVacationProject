@@ -1,0 +1,58 @@
+body {
+    background-color: #2E2E2E;
+}
+
+.header {
+    padding: 1rem;
+    color: white;
+    text-align: left;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: white;
+    border-color: #162c72;
+    color: #162c72;
+}
+
+.nav-tabs .nav-link {
+    color: white;
+    font-weight: bold;
+}
+
+.form-container {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 2rem;
+    margin-top: 2rem;
+    border-radius: 5px;
+}
+
+.sub-menu {
+    background-color: #03103b;
+    color: white;
+    padding: 0.5rem 0;
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+.sub-menu a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+}
+
+.sub-menu a:hover {
+    text-decoration: underline;
+}
+
+.sub-menu .dropdown-menu {
+    background-color: #03323b;
+}
+
+.sub-menu .dropdown-menu a {
+    color: white;
+}
+
+.sub-menu .dropdown-menu a:hover {
+    background-color: #162c72;
+}

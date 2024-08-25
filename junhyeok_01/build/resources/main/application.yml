@@ -15,6 +15,3 @@ server:
   servlet:
     session:
       timeout: 15m
-file:
-  upload-dir: /path/to/upload-directory
-  img-path: /path/to/image-directory
